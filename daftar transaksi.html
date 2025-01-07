@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Transaksi</title>
+    <link rel="stylesheet" href="daftar transaksi.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Daftar Transaksi Penjualan</h1>
+
+        <table id="transactionTable">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Transaksi</th>
+                    <th>Jumlah</th>
+                    <th>Kategori</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>@Miebanngucok | <a href="dashboard.html">Kembali ke Dashboard</a></p>
+    </footer>
+
+    <script>
+        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+
+        function displayTransactions() {
+            const tableBody = document.querySelector('#transactionTable tbody');
+            tableBody.innerHTML = ''; 
+
+            transactions.forEach((transaction, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${transaction.name}</td>
+                    <td>${transaction.quantity}</td>
+                    <td>${transaction.category}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        window.onload = displayTransactions;
+    </script>
+</body>
+</html>

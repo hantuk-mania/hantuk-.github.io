@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaksi Penjualan</title>
+    <link rel="stylesheet" href="Transaksi.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Form Transaksi Penjualan</h1>
+        <form id="transactionForm">
+            <label for="product">Pilih Produk</label>
+            <div class="product-list">
+                <div class="product-item" data-name="Porsche 918 Spyder" data-price="50000000000">
+                    <img src="WhatsApp Image 2025-01-07 at 02.52.34_aff3a571.jpg" alt="Porsche 918 Spyder">
+                    <p>Porsche 918 Spyder</p>
+                    <p>Rp50.000.000.000</p>
+                </div>
+                <div class="product-item" data-name="Porsche Taycan" data-price="3520000000">
+                    <img src="WhatsApp Image 2025-01-07 at 02.54.39_865a753a.jpg" alt="Porsche Taycan">
+                    <p>Porsche Taycan</p>
+                    <p>Rp3.520.000.000</p>
+                </div>
+                <div class="product-item" data-name="Porsche 911 GT3" data-price="9800000000">
+                    <img src="WhatsApp Image 2025-01-07 at 02.03.04_c6c9ee9f.jpg" alt="Porsche 911 GT3">
+                    <p>Porsche 911 GT3</p>
+                    <p>Rp9.800.000.000</p>
+                </div>
+                <div class="product-item" data-name="BMW F30 320i" data-price="324000000">
+                    <img src="WhatsApp Image 2025-01-07 at 03.10.28_2e3d97de.jpg" alt="BMW F30 320i">
+                    <p>BMW F30 320i</p>
+                    <p>Rp324.000.000</p>
+                </div>
+                <div class="product-item" data-name="BMW E36" data-price="95000000">
+                    <img src="WhatsApp Image 2025-01-07 at 02.59.01_d56eba07.jpg" alt="BMW E36">
+                    <p>BMW E36</p>
+                    <p>Rp95.000.000</p>
+                </div>
+                <div class="product-item" data-name="BMW M4 Competition" data-price="2804000000">
+                    <img src="WhatsApp Image 2025-01-07 at 02.03.03_f41acb4d.jpg" alt="BMW M4 Competition">
+                    <p>BMW M4 Competition</p>
+                    <p>Rp2.804.000.000</p>
+                </div>
+                <div class="product-item" data-name="Ferrari SF90" data-price="17000000000">
+                    <img src="WhatsApp Image 2025-01-07 at 03.12.28_818f16fb.jpg" alt="Ferrari SF90">
+                    <p>Ferrari SF90</p>
+                    <p>Rp17.000.000.000</p>
+                </div>
+                <div class="product-item" data-name="Ferrari F8" data-price="12300000000">
+                    <img src="WhatsApp Image 2025-01-07 at 03.07.37_40e5b10c.jpg" alt="Ferrari F8">
+                    <p>Ferrari F8</p>
+                    <p>Rp12.300.000.000</p>
+                </div>
+                <div class="product-item" data-name="Ferrari 448 Pista" data-price="8230000000">
+                    <img src="WhatsApp Image 2025-01-07 at 02.40.56_80040fad.jpg" alt="Ferrari 448 Pista">
+                    <p>Ferrari 448 Pista</p>
+                    <p>Rp8.230.000.000</p>
+                </div>
+            </div>
+
+            <label for="quantity">Jumlah</label>
+            <input type="number" id="quantity" name="quantity" placeholder="Masukkan jumlah produk" required>
+
+            <label for="price">Harga Satuan (Rp)</label>
+            <input type="number" id="price" name="price" placeholder="Masukkan harga satuan" required readonly>
+
+            <button type="submit">Simpan Transaksi</button>
+        </form>
+
+        <a href="Daftar transaksi.html" class="btn btn-primary mt-3">Lihat Daftar Transaksi</a>
+    </div>
+
+    <script>
+        const productItems = document.querySelectorAll('.product-item');
+        const priceInput = document.getElementById('price');
+        const quantityInput = document.getElementById('quantity');
+        const transactionForm = document.getElementById('transactionForm');
+
+        productItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const productPrice = this.getAttribute('data-price'); 
+                priceInput.value = productPrice; 
+            });
+        });
+
+        transactionForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const selectedProduct = Array.from(productItems).find(
+                item => item.getAttribute('data-price') === priceInput.value
+            );
+
+            if (!selectedProduct) {
+                alert('Pilih produk terlebih dahulu!');
+                return;
+            }
+
+            const productName = selectedProduct.getAttribute('data-name');
+            const quantity = quantityInput.value;
+            const price = parseInt(priceInput.value);
+
+            if (quantity && price) {
+                const total = quantity * price;
+                const transaction = {
+                    name: productName,
+                    quantity: parseInt(quantity),
+                    category: "Mobil" 
+                };
+
+                let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+                transactions.push(transaction);
+                localStorage.setItem('transactions', JSON.stringify(transactions));
+
+                alert(`Transaksi berhasil disimpan:\n${productName} - ${quantity} unit`);
+                transactionForm.reset();
+                priceInput.value = '';
+            } else {
+                alert('Isi jumlah dengan benar!');
+            }
+        });
+    </script>
+</body>
+</html>

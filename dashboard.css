@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Bebas Neue', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+header {
+    background-color: #343a40;
+    color: white;
+    padding: 15px 0;
+}
+
+header .logo-container {
+    text-align: center;
+}
+
+header .logo-container .logo {
+    max-width: 100px;
+    height: auto;
+}
+
+.navbar {
+    background-color: #343a40;
+}
+
+.navbar .nav-link {
+    color: white !important;
+    font-size: 16px;
+    padding: 8px 20px;
+}
+
+.navbar .nav-link:hover {
+    background-color: #495057;
+}
+
+#welcome-message {
+    background-color: #f1f1f1;
+    padding: 50px 0;
+}
+
+#welcome-message h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+#welcome-message p {
+    font-size: 18px;
+}
+
+#top-products {
+    padding: 50px 0;
+}
+
+#top-products .card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+#top-products .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+#top-products .card-title {
+    font-size: 18px;
+    margin: 15px 0;
+}
+
+#top-products .card-text {
+    font-size: 16px;
+    color: #007bff;
+}
+
+#cara-pakai {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+}
+
+#cara-pakai h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #ffdd57;
+}
+
+.step {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.step h3 {
+    font-size: 24px;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+.step p {
+    font-size: 16px;
+    color: #555;
+}
+
+.step-number {
+    font-size: 35px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ffdd57;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    line-height: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
